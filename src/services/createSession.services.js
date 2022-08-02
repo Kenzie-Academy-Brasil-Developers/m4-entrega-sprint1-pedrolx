@@ -16,7 +16,7 @@ const createSessionService = async (email, password) => {
     throw new Error("Invalid data, please verify.");
   }
 
-  const token = jwt.sign({ email: foundedUser.email }, process.env.SECRET_KEY, {
+  const token = jwt.sign({ email: foundedUser.email, id: foundedUser.id }, process.env.SECRET_KEY, {
     expiresIn: "24h",
     subject: foundedUser.id,
   });

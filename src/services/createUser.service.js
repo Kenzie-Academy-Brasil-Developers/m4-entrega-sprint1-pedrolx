@@ -21,9 +21,12 @@ const createUserService = async (email, name, password, isAdm) => {
         id: uuidv4()
     }
 
+    const returningUser = { ...newUser } 
+    delete returningUser.hashedPassword;
+
     users.push(newUser);
 
-    return newUser;
+    return returningUser;
 }
 
 export default createUserService;

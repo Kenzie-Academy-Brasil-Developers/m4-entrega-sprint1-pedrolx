@@ -8,6 +8,6 @@ app.use(express.json());
 app.use('/users', userRouter);
 app.use('/login', sessionRoutes);
 
-app.listen(3000);
+app.listen(3001);
 
 export default app;
