@@ -4,9 +4,12 @@ const updateUserController = (request, response) => {
     const { id } = request.params;
     const { name, email, password, isAdm, updatedOn } = request.body;
 
-    const updatedUser = updateUserService(name, email, id, password, isAdm, updatedOn);
+    const updatedUser = updateUserService(name, email, id, password, updatedOn);
 
-    return response.json(updatedUser);
+    updatedUser.uuid = updatedUser.id;
+    delete updatedUser.id;
+
+    return response.status(200).json(updatedUser);
 }
 
 export default updateUserController;

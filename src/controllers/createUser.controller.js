@@ -5,6 +5,10 @@ const createUserController = async (request, response) => {
 
     const user = await createUserService(email, name, password, isAdm);
 
+    if (user.message) {
+        return response.status(400).json(user);
+    }
+
     return response.status(201).json(user);
 }
 

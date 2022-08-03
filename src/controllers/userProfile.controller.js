@@ -6,6 +6,8 @@ const userProfileController = (request, response) => {
     const found = userProfileService(userLogged);
 
     if(found) {
+        found.uuid = found.id;
+        delete found.id;
         return response.status(200).json(found);
     }
 

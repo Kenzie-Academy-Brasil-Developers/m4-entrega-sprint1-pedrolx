@@ -5,10 +5,11 @@ const admValidation = (request, response, next) => {
   const user = users.find((user) => user.id === id);
 
   if (user.isAdm === false) {
-    return response.status(401).json({ message: "You aren't an adm" });
-  } else {
+    return response.status(401).json({ message: "Missing admin permissions" });
+  } 
+  
     next();
-  }
+  
 };
 
 export default admValidation;

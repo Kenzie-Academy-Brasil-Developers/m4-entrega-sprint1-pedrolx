@@ -4,10 +4,10 @@ const createSessionController = async (request, response) => {
   try {
     const { email, password } = request.body;
     const token = await createSessionService(email, password);
-    return response.json(token);
+    return response.status(200).json({ token: token});
 
   } catch (error) {
-    return response.status(400).json({ message: error.message });
+    return response.status(401).json({ message: error.message });
   }
 };
 

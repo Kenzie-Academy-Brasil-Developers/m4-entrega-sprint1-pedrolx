@@ -9,7 +9,7 @@ const deleteUserService = (id) => {
 
   users.splice(userIndex, 1);
   
-  return "User excluded.";
+  return "User deleted with success.";
 };
 
 export default deleteUserService;
