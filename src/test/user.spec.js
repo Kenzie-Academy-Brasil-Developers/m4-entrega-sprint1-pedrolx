@@ -145,7 +145,6 @@ describe("Testando rota PATCH /users/<uuid>", () => {
     const response = await request(app)
       .patch(`/users/${user.body.uuid}`)
       .send(updateNotAdm);
-
     expect(response.status).toBe(401);
     expect(response.body).toHaveProperty("message");
   });
@@ -169,6 +168,7 @@ describe("Testando rota PATCH /users/<uuid>", () => {
     expect(response.body).toHaveProperty("email");
     expect(response.body).toHaveProperty("isAdm", user.body.isAdm);
     expect(response.body).not.toHaveProperty("password");
+
   });
 
   it("Testando atualização de outro usuário sem permissão de ADM", async () => {

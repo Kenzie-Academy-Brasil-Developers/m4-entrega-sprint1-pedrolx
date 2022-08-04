@@ -16,7 +16,7 @@ const authenticationMiddleware = (request, response, next) => {
             return response.status(401).json({ message: "You don't have permission."})
         };
 
-        request.userId = decoded.id;
+        request.userId = decoded.uuid;
         request.userEmail = decoded.email;
 
         next();

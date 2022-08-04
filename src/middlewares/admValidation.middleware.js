@@ -1,10 +1,9 @@
 import { users } from "../database";
 
 const admValidation = (request, response, next) => {
-  const id  = request.userId;
-  const user = users.find((user) => user.id === id);
+  const user = users.find((user) => user.uuid === request.userId);
 
-  if (user.isAdm === false) {
+  if (user.isAdm !== true) {
     return response.status(401).json({ message: "Missing admin permissions" });
   } 
   

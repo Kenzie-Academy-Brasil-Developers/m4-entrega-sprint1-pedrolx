@@ -1,13 +1,13 @@
+import { users } from '../database';
 import userProfileService from '../services/userProfile.service';
 
 const userProfileController = (request, response) => {
-    const userLogged = request.body;
+    const userLogged = users.find(user => user.uuid === request.userId);
 
     const found = userProfileService(userLogged);
 
+
     if(found) {
-        found.uuid = found.id;
-        delete found.id;
         return response.status(200).json(found);
     }
 

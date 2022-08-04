@@ -10,15 +10,15 @@ const createSessionService = async (email, password) => {
     throw new Error("Invalid data, please verify.");
   }
 
-  const passwordMatch = await compare(password, foundedUser.hashedPassword);
+  const passwordMatch = await compare(password, foundedUser.password);
 
   if (!passwordMatch) {
     throw new Error("Invalid data, please verify.");
   }
 
-  const token = jwt.sign({ email: foundedUser.email, id: foundedUser.id }, process.env.SECRET_KEY, {
+  const token = jwt.sign({ email: foundedUser.email, uuid: foundedUser.uuid }, process.env.SECRET_KEY, {
     expiresIn: "24h",
-    subject: foundedUser.id,
+    subject: foundedUser.uuid,
   });
 
   return token;

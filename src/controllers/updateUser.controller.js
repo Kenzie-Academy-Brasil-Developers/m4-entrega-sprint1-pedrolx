@@ -1,15 +1,12 @@
 import updateUserService from "../services/updateUser.service";
 
-const updateUserController = (request, response) => {
+const updateUserController = async (request, response) => {
     const { id } = request.params;
-    const { name, email, password, isAdm, updatedOn } = request.body;
+    const { name, email, password } = request.body;
 
-    const updatedUser = updateUserService(name, email, id, password, updatedOn);
+    const updatedUser = await updateUserService(name, email, id, password);
 
-    updatedUser.uuid = updatedUser.id;
-    delete updatedUser.id;
-
-    return response.status(200).json(updatedUser);
+    return response.status(200).json({...updatedUser, password: undefined});
 }
 
 export default updateUserController;
